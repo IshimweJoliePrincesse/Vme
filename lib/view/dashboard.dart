@@ -191,11 +191,103 @@ class _DashboardState extends State<Dashboard> {
 
 
                               },
-                            )
-                          }
-                        )
-                      })
-                    )
+                              borderRadius: BorderRadius.circular(5),
+                              child: Container(
+                                width: MediaQuery.of(context).size.width,
+                                margin: const EdgeInsets.symmetric(horizontal: 5.0),
+                                decoration: BoxDecoration(
+                                  color: i['color'] as Color,
+                                  borderRadius: BorderRadius.circular(10)
+                                ),
+                                child: Center(child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(i['icon'] as IconData, size: 40, color: Colors.white,),
+                                    Text('${i['title']}', textAlign: TextAlign.center, style: TextStyle(fontSize: 20.0, color: Colors.white),),
+                                  ],
+                                ))
+                              ),
+                            );
+                          },
+                        );
+                      }).toList(),
+                    ),
+
+
+                    const SizedBox(height: 20,),
+
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+
+                        InkWell(
+
+                          onTap: (){
+                            setState((){
+                              status = 'all';
+                              statusIndex = 0;
+                              selectedStatusIndex = statusIndex;
+                            });
+                          },
+                          child: Container(
+                            width: 100,
+                            decoration: BoxDecoration(
+                              color: status == 'all' ? primaryColor: Colors.transparent,
+                              borderRadius: BorderRadius.circular(8),
+                              border: Border.all(color: primaryColor),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Center(child: Text('All', style: TextStyle(fontWeight: FontWeight.w500, fontSize: 15, color: status == 'all' ? Colors.white: Colors.grey.shade600,),)),
+                            ),
+                          ),
+                        ),
+
+                        InkWell(
+                          onTap: (){
+                            setState((){
+                              status = 'ongoing';
+                              statusIndex = 1;
+                              selectedStatusIndex = statusIndex;
+                            });
+                          },
+                          child: Container(
+                            width:100,
+                            decoration: BoxDecoaration(
+                              color: status == 'ongoing' ? primaryColor: Colors.transparent,
+                              borderRadius: BorderRadius.circular(8),
+                              border: Border.all(color: primaryColor)
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Center(child: Text('Ongoing', style: TextStyle(fontWeight: FontWeight.w500, fontSize: 15, color: status == 'ongoing' ? Colors.grey.shade600,),)),
+                            ),
+                          ),
+                        ),
+
+                        InkWell(
+                          onTap: (){
+                            setState((){
+                              status='upcoming';
+                              statusIndex = 2;
+                              selectedStatusIndex = statusIndex;
+                            });
+                          },
+                          child: Container(
+                            width: 100,
+                            decoration: BoxDecoration(
+                              color: status == 'upcoming' ? primaryColor: Colors.transparent,
+                              borderRadius: BorderRadius.circular(8),
+                              border: Border.all(color: primaryColor)
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Center(child: Text('Upcoming', style: TextStyle(fontWeight: FontWeight.w500, fontSize: 15, color: status == 'upcoming' ? Colors.white: Colors.grey.shade600,),)),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ]
                 )
               )
