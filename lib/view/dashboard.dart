@@ -288,6 +288,82 @@ class _DashboardState extends State<Dashboard> {
                         ),
                       ],
                     ),
+                    const SizedBox(height: 20),
+                    Expanded(
+                      child: FutureBuilder(
+                        future: electionProvider.getElections(),
+                        builder: (context, snapshot){
+                          if(snapshot.connectionState == ConnectionState.waiting){
+                            return const Center(child: CircularProgressIndicator(),);
+                          }
+                          else if(snapshot.hasError){
+                            return Center(child: Text('Error: ${snapshot.error}'));
+                          }
+                          else {
+                            return ListView.builder( itemCount: electionProvider.elections.length, itemBuilder:(context, index){
+                              final elections = electionProvider.elections[index];
+
+                              if(status == 'upcoming' && elections.status!.toLowerCase() == 'not started'){
+                                return Padding(
+                                  padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal:8.0),
+                                  child:Material(
+                                    elevation: 5,
+                                    borderRadius: BorderRadius.circular(5),
+                                    child: Container(
+                                      width: double.infinity,
+
+                                      decoration: BoxDecoration(
+                                        color: Color(0xffafcfb),
+
+                                        borderRadius: BorderRadius.circular(5)
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          
+                                          children:[
+                                            Column(
+                                              mainAxisAlignment: MainAxisAlignment.start,
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children:[
+                                                Text("${elections.title} ${DateFormat('yyyy').format(DateTime.parse(elections.startDate.toString()))}", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17, color: Colors.black),),
+                                                Text("Date: ${DateFormat('dd MM yyyy').format(DateTime.parse(elections.startDate.toString()))}", style:TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: Colors.black),),
+                                              ],
+                                            ),
+
+                                            if(formatDate(elections.startDate)==DateFormat('dd MM yyyy').format(DateTime.parse(DateTime.now().toString())))
+                                            InkWell(
+                                              onTap: (){
+                                                Navigator.push(context, MaterialPageRoute(builder: (context)=>ElectionsScreen(electionId: elections.id, title: elections.title.toString(), year: DateFormat('yyyy').format(DateTime.parse(elections.startDate ?? '')), startDate: formatDate(elections,startDate), startTime: formatTime(elections.startDate), endTime: formatTime(elections.endDate), status: elections.status.toString(), candidats: elections.candidates as List<Candidate>)));
+                                              },
+                                              child: Container(
+                                                width: 75,
+                                                decoration: BoxDecoration(
+                                                  color: primaryColor,
+                                                  borderRadius: BorderRadius.circular(6),
+                                                  border: Border.all(color: primaryColor)
+                                                ),
+                                                child: const Padding(
+                                                  padding: EdgeInsets.all(3.0),
+                                                  child: Center(child: Text('Start', style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Colors.white),)),
+                                                ),
+                                              ),
+
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              }
+                              
+                            })
+                          }
+                        }
+                      )
+                    )
                   ]
                 )
               )
