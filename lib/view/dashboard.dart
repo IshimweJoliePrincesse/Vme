@@ -357,16 +357,136 @@ class _DashboardState extends State<Dashboard> {
                                     ),
                                   ),
                                 );
+                              } //&& elections.status!.toLoweCase() == 'in progress'
+                              else if(status == 'ongoing' && elections.status!.toLowerCase() == 'in progress'){
+
+                                return Padding(
+                                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                                  child: Material(
+                                    elevation: 5,
+                                    borderRadius: BorderRadius.circular(8),
+                                    child: Container(
+                                      width: double.infinity,
+
+                                      decoration BoxDecoration(
+                                        color: const Color(0xFFfafcfb),
+
+                                        borderRadius: BorderRadius.circular(8)
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Column(
+                                              mainAxisAlignment: MainAxisAlignment.start,
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children:[
+                                                Text("Date: ${DateFormat('yyyy').format(DateTime.parse(elections.startDate.toString()))}",
+                                                style: TextStyle(
+                                                  fontWeight: FontWeight.bold, fontSize: 17, color: Colors.black
+                                                ),),
+                                                Text("Date: ${DateFormat('dd MM yyyy').format(DateTime.parse(elections.startDate.toString()))}",
+                                                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: Colors.black),
+                                                ),
+                                                Text("Status: ${elections.status?.toUpperCase()}", style:TextStyle(fontStyle: FontStyle.italic, color: Colors.grey.shade600, fontWeight: FontWeight.w500),)
+                                              ],
+                                            ),
+                                          InkWell(
+                                            onTap: (){
+                                              Navigator.push(context, MaterialPageRoute(builder: (context)=>ElectionScreen(electionId: elections.id, title:elections.title.toString(), year: DateFormat('yyyy').format(DateTime.parse(elections.startDate ?? '')), startDate: formatDate(elections.startDate), startTime: formatTime(elections.startDate), endTime: formatTime(elections.endDate), status: elections.status.toString(), candidates: elections.candidates as List<Candidates>)));
+                                            },
+                                            child: Container()(
+                                              width: 75,
+                                              decoration: BoxDecoration(
+                                                color: primaryColor,
+                                                borderRadius: BorderRadius.circular(6),
+                                                border: Border.all(
+                                                  color: primaryColor
+                                                )
+                                              ),
+                                              child: const Padding(
+                                                padding: EdgeInsets.all(3.0),
+                                                child: Center(child: Text('Start', style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Colors.white),)),
+                                              ),
+
+                                            ),
+                                          )
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                );
                               }
-                              
-                            })
-                          }
-                        }
+                              else if(status == 'all'){
+                                return Padding(
+                                  padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
+                                  child: Material(
+                                    elevation: 5,
+                                    borderRadius: BorderRadius.circular(5),
+                                    child: Container(
+                                      width: double.infinity,
+
+                                      decoration: BoxDecoration(
+                                        color: Color(0xfffafcfb),
+
+                                        borderRadius: BorderRadius.circular(5)
+                                      ),
+                                      child: Padding(
+                                        padding:const EdgeInsets.all(8.0),
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          children:[
+                                            Column(
+                                              mainAxisAlignment: MainAxisAlignment.start,
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children:[
+                                                Text("${elections.title} ${DateFormat('yyyy').format(DateTime.parse(elections.startDate.toString()))}", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17, color: Colors.black),)
+                                                Text("Date: ${DateFormat('dd MM yyyy').format(DateTime.parse(elections.startDate.toString()))}", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: Colors.black),),
+                                              ],
+                                            ),
+
+                                            elections.status == 'in progress' ?
+                                            InkWell(
+                                              onTap: (){
+                                                Navigator.push(context, MaterialPageRoute(builder: (context)=>ElectionScrenn(electionId: elctions.id, title: elections.title.toString(), year: DateFormat('yyyy').format(DateTime.parse(elections.startDate ?? '')), startDate: formatDate(elections.startDate), startTime: formatTime(elections.startDate), endTime: formatTime(elections.endDate), status: elections.status.toString(), candidates: elections.candidates as List<Candidates> )));
+                                               },
+                                               child: Container(
+                                                width: 75,
+                                                decoration: BoxDecoration(
+                                                  color: primaryColor,
+                                                  borderRadius: BorderRadius.circular(6),
+                                                  border: Border.all(color: primaryColor)
+                                                ),
+                                                child: const Padding(
+                                                  padding: EdgeInsets.all(3.0),
+                                                  child: Center(child: Text('Start', style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Colors.white),)),
+                                                ),
+                                               ),
+                                               ): Container(),
+                                          ],
+                                            ),
+                                      ),
+                                          
+                                        ),
+                                      ),
+                                    ),
+                              } else {
+                                return Container();
+                              }
+                            });
+                               
+                              }
+
+                            }
                       )
-                    )
-                  ]
-                )
-              )
+                    ),
+                      
+                      
+                  ],
+                ),
+              ),
             ]
           )
         )
