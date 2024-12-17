@@ -487,6 +487,84 @@ class _DashboardState extends State<Dashboard> {
                   ],
                 ),
               ),
+
+              const SizedBox(height: 20,),
+              Text(AppLocalizations.of(context)!.news_updates, style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold),),
+              const SizedBox(height: 7,),
+              Expanded(
+
+                child: FutureBuilder(
+                  future: announcementProvider.getPost(),
+                  builder: (context, snapshot){
+                    if(snapshot.hasData){
+                      return const Center(child: const CircularProgressIndicator());
+                    }
+                    else if(snapshot.hasError){
+                      return Text("Something went wrong");
+                    }
+                    else {
+                      return ListView.builder(scrollDirection: Axis.vertical,
+                      itemCount: announcementProvider.postList.length,
+                      itemBuilder: (context, index){
+                        return
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Material(
+                            elevation: 5,
+                            borderRadius: BorderRadius.circular(5),
+                            child: Container(
+                              width: double.infinity,
+                              height: 145,
+                              decoartion: BoxDecoration(
+                                color: Colors.white,
+
+                                borderRadius: BorderRadius.circular(5)
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      color: primaryColor,
+                                      borderRadius: BorderRadius.only(bottomRight: Radius.circular(100))
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(bottom: 8.0, right: 8, left: 3.5, top: 3.5),
+                                      child: Icon(Icons.star, color: Colors.white, size: 18,),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 4),
+                                    child: Column(
+                                      children:[
+
+                                      Text(DateFormat('dd MM yyyy').format(DateTime.parse(announcementProvider.postList[index]['date'].tString())), style: TextStyle(color: Colors.black54),),
+
+                                      InkWell(
+                                        onTap: (){
+
+                                        },
+                                        child: Row(
+                                          children: [
+                                            Icon(Icons.attachment),
+                                            SizedBox(width: 4,),
+                                            Text('img.jpg', style: TextStyle(color: primaryColor, fontStyle: FontStyle.italic),)
+                                          ]
+                                        )
+                                      )
+                                      ]
+                                    )
+                                  )
+                                ]
+                              )
+                            )
+                          )
+                        )
+                      })
+                    }
+                  }
+                )
+              )
             ]
           )
         )
