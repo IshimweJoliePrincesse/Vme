@@ -154,6 +154,36 @@ class _DigitalBallotScreenState extends State<DigitalBallotScreen>{
 
                         });
                       },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5.0),
+                          color: (isSelected && index == _index)? isSelectedColor: const Color(0xFFf7f7f5)
+
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            // Image.memory(base64Decode(widget.candidates[index]!.photo.toString()), width: 40, height: 40),
+                            // const FadeInImage(width: 70, placeholder:AssetImage('assets/images/loading.png'), image: NetworkImage("https://icon-library.com/images/political-icon/political-icon-0.jpg"))
+
+                            Container(
+                              height: 70,
+                              width: 70,
+                              decoration: BoxDecoration(
+                                color: Colors.green,
+                                borderRadius: BorderRadius.circular(50)
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(3.0),
+                                child: ClipRRect(borderRadius: BorderRadius.circular(50), child:candidateImages[index]),
+                              ),
+                            ),
+
+                            const SizedBox(height: 13),
+                            Text(widget.candidates[index].name.toString(), style: )
+                          ]
+                        )
+                      )
                     )
                   }
                 )
