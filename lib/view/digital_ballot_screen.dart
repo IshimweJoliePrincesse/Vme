@@ -180,17 +180,56 @@ class _DigitalBallotScreenState extends State<DigitalBallotScreen>{
                             ),
 
                             const SizedBox(height: 13),
-                            Text(widget.candidates[index].name.toString(), style: )
-                          ]
-                        )
-                      )
+                            Text(widget.candidates[index].name.toString(), style: headline7,)
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+
+              const SizedBox(height: 15,),
+              Button(tap: (){
+                showDialog(barrierColor: Colors.grey.withOpacity(0.6), barrierDismissible: false, context: context, builder: (context){
+                  return AlertDialog(title: const Row(children: [ Icon(Icons.how_to_vote, size: 25,), SizedBox(width: 5), Text('Confirmation')],),
+                  content: Text(AppLocalizations.of(context)!.confirm_vote),
+                  actions: [
+
+                    Row(
+                      children: [
+                        SizedBox(
+                          width: 120,
+                          child: Button(tap: (){
+                            Navigator.pop(context);
+                          }, text: AppLocalizations.of(context)!.cancel.toUpperCase(), color:Colors.red, fontSize: 15, borderRadius: 10,),
+                        ),
+
+                        const SizedBox(width: 10),
+
+                        SizedBox(
+                          width: 120,
+                          child: Button(tap: (){
+
+                            voteProvider.vote(context: context, index: _index!, electionId: widget:electionId);
+
+                            Future.delayed(const Duration(seconds: 5));
+
+                            setState((){
+                              voted = true;
+                              timeLeft = 0;
+                            });
+                          }, text: AppLocalizations.of(context)!.confirma, color: primaryColor, fontSize: 15, borderRadius: 10,),
+                        ),
+                      ],
                     )
-                  }
-                )
-              )
+                  ],);
+                });
+              }, text: "SUBMIT", color: primaryColor, borderRadius: 10, fontColor: Colors.white.fontSize: 18),
+              const SizedBox(height: 5,),
             ]
-          )
-            ))
-    )
+          )),
+            ),);
+    
   }
 }
