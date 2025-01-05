@@ -204,18 +204,51 @@ class _LoginOfficialScreenState extends State<LoginOfficialScreen> {
                                 }
                               },
                               text: AppLocalizations.of(context)!.login.toUpperCase(),
-                            )
+                              color: primaryColor,
+                              fontColor: Colors.white,
+                              fontSize: 18,
+                              borderRadius: 10.0,
+                              loading: isLoading,
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(5.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const Icon(Icons.arrow_back),
+                                const SizedBox(
+                                  width: 5,
+                                ),
+                                InkWell(
+                                  onTap: (){
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context)=> const LoginScreen()
+                                      )
+                                    );
+                                  },
+                                  child: Text(
+                                    AppLocalizations.of(context)!.return_back,
+                                    style: const TextStyle(
+                                      decoration: TextDecoration.underline, fontWeight: FontWeight.bold
+                                    ),
+                                  )
+                                ),
+                              ],
+                            ),
                           )
-                        ]
-                      )
-                    )
-                  )
+                        ],
+                      ),
+                    ),
+                  ),
                 )
-              ]
-            )
-          )
-        )
+              ],
+            ),
+          ),
+        ),
       )
-    )
+    );
   }
 }
