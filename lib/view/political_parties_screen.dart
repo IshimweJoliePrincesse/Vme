@@ -54,7 +54,88 @@ class _PoliticalPartiesScreenState extends State<PoliticalPartiesScreen> {
                   builder: (context, snapshot){
 
                     if(snapshot.connectionState == ConnectionState.waiting){
-                      
+                      return const Center(child: CircularProgressIndicator());
+                    } else if(snapshot.hasError){
+                      return Center(child: Text('Error: ${snapshot.error}'));
+                    }
+
+                    else{
+                      return GridView.builder(gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2), scrollDirection: Axis.vertical, itemCount: politicalPartiesProvider.partiesList.length, itemBuilder: (context, index){
+
+                        String image = politicalPartiesProvider.partiesList[index].identification.toString();
+                        List<String> splitImage = image.split(',');
+
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 5),
+                          child: InkWell(
+                            onTap: (){
+                              showBottomSheet(context, context,
+                              elevation: 10,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(30),
+                                  topRight: Radius.circular(30)
+                                )
+                              ),
+                              constraints: BoxConstraints(
+                                maxHeight: MediaQuery.of(context).size.height * 1.5
+                              ),
+                              builder: (context){
+                                return Container(
+                                  decoration: BoxDecoration(
+
+                                    borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(30),
+                                      topRight: Radius.circular(30)
+                                    )
+                                  ),
+                                  child: SingleChildScrollView(
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(30.0),
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Center(child: Icon(Icons.arrow_drop_down_circle_outlined)),
+                                          Text(politicalPartiesProvider.partiesList[index].name.toString() ?? '',
+                                          style: const TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.w500,
+                                          )),
+                                          const SizedBox(height: 5,),
+                                          Text(politicalPartiesProvider.partiesList[insex].description.toString() ?? '',
+                                          style: const TextStyle(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w400
+                                          )),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              }
+                              );
+                            },
+                            borderRadius: BorderRadius.circular(5),
+                            child: Container(
+                              width: MediaQuery.of(context).size.width,
+                              height: 150,
+                              margin: const EdgeInsets.symmetric(horizontal: 5.0),
+                              decoration: BoxDecoration(
+                                color: randomColors(colorList),
+                                borderRadius: BorderRadius.circular(10)
+                              ),
+                              child: Center(child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children:[
+                                  SizedBox(height: 50, child: Image.memory(base64Decode(splitImage[splitImage.length-1]))),
+
+                                  Text(politicalPartiesProvider.partiesList[index].name.toString(), textAlign: TextAlign.center, style: TextStyle(fontSize: 20.0, color: Colors.white),),
+                                ],
+                              ))
+                            ),
+                          ),
+                        );
+                      })
                     }
                   }
                 )
