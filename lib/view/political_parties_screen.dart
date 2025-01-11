@@ -69,7 +69,7 @@ class _PoliticalPartiesScreenState extends State<PoliticalPartiesScreen> {
                           padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 5),
                           child: InkWell(
                             onTap: (){
-                              showBottomSheet(context, context,
+                              showBottomSheet(context: context, context,
                               elevation: 10,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.only(
@@ -102,7 +102,7 @@ class _PoliticalPartiesScreenState extends State<PoliticalPartiesScreen> {
                                             fontWeight: FontWeight.w500,
                                           )),
                                           const SizedBox(height: 5,),
-                                          Text(politicalPartiesProvider.partiesList[insex].description.toString() ?? '',
+                                          Text(politicalPartiesProvider.partiesList[index].description.toString() ?? '',
                                           style: const TextStyle(
                                             fontSize: 18,
                                             fontWeight: FontWeight.w400

@@ -40,7 +40,7 @@ class _FeedbackScreenState extends State<FeedbackScreen>{
               children: [
                 Text(AppLocalizations.of(context)!.ratings, style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),),
                 const SizedBox(height: 10),
-                Text(AppLocalizationx.of(context)!.rate_your_experience, style: TextStyle(fontSize:16, fontWeight: FontWeight.w500),),
+                Text(AppLocalizations.of(context)!.rate_your_experience, style: TextStyle(fontSize:16, fontWeight: FontWeight.w500),),
                 const SizedBox(height: 5),
 
                 Center(

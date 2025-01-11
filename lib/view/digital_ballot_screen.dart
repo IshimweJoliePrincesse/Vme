@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'dart: convert';
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:electa/components/button.dart';
@@ -54,7 +54,7 @@ class _DigitalBallotScreenState extends State<DigitalBallotScreen>{
         showDialog(barrierColor: Colors.grey.withOpacity(0.6), barrierDismissible: false, context: context, builder:(context){
           return PopScope(
             canPop: false,
-            child: AlertDialog(title: const Column(children: [Icon(Icons.timer, size: 25), SizedBox(height: 5), Text('Time finished')],)
+            child: AlertDialog(title: const Column(children: [Icon(Icons.timer, size: 25), SizedBox(height: 5), Text('Time finished')],),
             content: const Text("Your voting time just finished"),
             actions: [
               Center(
@@ -125,7 +125,7 @@ class _DigitalBallotScreenState extends State<DigitalBallotScreen>{
                     child: Stack(
                       fit: StackFit.expand,
                       children: [
-                        Center(child: Transform.scale(scale: 2.0, child: const CircualarProgressIndicator(value: 1, valueColor: AlwaysStoppedAnimation(Color(0xFFf7f5f0)),))),
+                        Center(child: Transform.scale(scale: 2.0, child: const CircularProgressIndicator(value: 1, valueColor: AlwaysStoppedAnimation(Color(0xFFf7f5f0)),))),
                         Center(child: Transform.scale(scale: 2.0, child: CircularProgressIndicator(value: timeLeft.toDouble()/maxTime, valueColor: const AlwaysStoppedAnimation(Colors.green),))),
 
                         Center(child: Text(timeLeft.toString(), style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 22))),
@@ -211,7 +211,7 @@ class _DigitalBallotScreenState extends State<DigitalBallotScreen>{
                           width: 120,
                           child: Button(tap: (){
 
-                            voteProvider.vote(context: context, index: _index!, electionId: widget:electionId);
+                            voteProvider.vote(context: context, index: _index!, electionId: widget.electionId);
 
                             Future.delayed(const Duration(seconds: 5));
 
@@ -219,13 +219,13 @@ class _DigitalBallotScreenState extends State<DigitalBallotScreen>{
                               voted = true;
                               timeLeft = 0;
                             });
-                          }, text: AppLocalizations.of(context)!.confirma, color: primaryColor, fontSize: 15, borderRadius: 10,),
+                          }, text: AppLocalizations.of(context)!.confirm, color: primaryColor, fontSize: 15, borderRadius: 10,),
                         ),
                       ],
                     )
                   ],);
                 });
-              }, text: "SUBMIT", color: primaryColor, borderRadius: 10, fontColor: Colors.white.fontSize: 18),
+              }, text: "SUBMIT", color: primaryColor, borderRadius: 10, fontColor: Colors.white,fontSize: 18),
               const SizedBox(height: 5,),
             ]
           )),

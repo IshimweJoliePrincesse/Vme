@@ -1,7 +1,7 @@
-import 'dart: async';
-import 'dart: convert';
+import 'dart:async';
+import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:electa/components/button,dart';
+import 'package:electa/components/button.dart';
 import 'package:electa/models/elections_model.dart';
 import 'package:electa/utils/app_colors.dart';
 import 'package:electa/utils/constants.dart';

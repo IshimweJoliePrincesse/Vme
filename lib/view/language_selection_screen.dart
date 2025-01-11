@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:electa/components/custom_app_bat.dart';
+import 'package:electa/components/custom_app_bar.dart';
 import 'package:electa/utils/app_colors.dart';
 import 'package:electa/view_model/language_provider.dart';
 import 'package:provider/provider.dart';

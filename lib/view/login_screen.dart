@@ -6,7 +6,7 @@ import 'package:electa/utils/app_colors.dart';
 import 'package:electa/utils/app_styles.dart';
 import 'package:electa/utils/constants.dart';
 import 'package:electa/view/camera_screen.dart';
-import 'packafe:electa/view/complete_profile.dart';
+import 'package:electa/view/complete_profile.dart';
 import 'package:electa/view/home_screen.dart';
 import 'package:electa/view/login_official_screen.dart';
 import 'package:electa/view/official_view/change_password_screen.dart';
@@ -15,7 +15,7 @@ import 'package:electa/view_model/theme_mode_provider.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shred_preferences.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key, this.auth = false});
@@ -77,7 +77,7 @@ class _LoginScreen extends State<LoginScreen> {
             ));
           }
           else{
-            debugPrint('Login Failed, status code: ${response.statusCode.toStrring()}');
+            debugPrint('Login Failed, status code: ${response.statusCode.toString()}');
 
             ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
               content: Text("User Login Failed"),
@@ -120,7 +120,7 @@ class _LoginScreen extends State<LoginScreen> {
     return null;
   }
 
-  @overrid
+  @override
   Widget build(BuildContext context){
 
     return Container(
@@ -195,7 +195,7 @@ class _LoginScreen extends State<LoginScreen> {
                                   color: Colors.green,
                                   borderRadius: BorderRadius.circular(50),
                                 ),
-                                child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [const Icon(Icons.check_circle, color: Colors.white,), const SizedBox(width: 5), Text('FACE VERIFIED', style: headline4,),].)
+                                child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [const Icon(Icons.check_circle, color: Colors.white,), const SizedBox(width: 5), Text('FACE VERIFIED', style: headline4,),]),
                               ),
                             ):
                             Padding(
@@ -238,7 +238,7 @@ class _LoginScreen extends State<LoginScreen> {
                               } else{
                                 ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Verify face in order to login"), backgroundColor: Colors.red,));
                               }
-                              setStatet((){
+                              setState((){
 
                               });
 
