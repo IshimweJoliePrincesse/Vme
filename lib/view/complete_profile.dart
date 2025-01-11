@@ -58,7 +58,7 @@ class _CompleteProfileState extends State<CompleteProfile> {
                       if(value!.isEmpty){
                         return 'Phone required*';
                       }
-                      if(value!.length < 10 || value!.lenght > 13){
+                      if(value!.length < 10 || value!.length > 13){
                         return "Invalid phone number";
                       }
                       return null;

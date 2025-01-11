@@ -1,14 +1,15 @@
 class PoliticalPartiesModel {
-  PoliticalPartiesMidel({
-    String? id, 
-      String? name, 
-      String? email, 
-      String? identification, 
-      String? password, 
-      String? description, 
-      String? createdAt, 
-      String? updatedAt, 
-      num? v,}){
+  PoliticalPartiesModel({
+    String? id,
+    String? name,
+    String? email,
+    String? identification,
+    String? password,
+    String? description,
+    String? createdAt,
+    String? updatedAt,
+    num? v,
+  }) {
     _id = id;
     _name = name;
     _email = email;
@@ -18,7 +19,7 @@ class PoliticalPartiesModel {
     _createdAt = createdAt;
     _updatedAt = updatedAt;
     _v = v;
-}
+  }
 
   PoliticalPartiesModel.fromJson(dynamic json) {
     _id = json['_id'];
@@ -40,25 +41,28 @@ class PoliticalPartiesModel {
   String? _createdAt;
   String? _updatedAt;
   num? _v;
-PoliticalPartiesModel copyWith({  String? id,
-  String? name,
-  String? email,
-  String? identification,
-  String? password,
-  String? description,
-  String? createdAt,
-  String? updatedAt,
-  num? v,
-}) => PoliticalPartiesModel(  id: id ?? _id,
-  name: name ?? _name,
-  email: email ?? _email,
-  identification: identification ?? _identification,
-  password: password ?? _password,
-  description: description ?? _description,
-  createdAt: createdAt ?? _createdAt,
-  updatedAt: updatedAt ?? _updatedAt,
-  v: v ?? _v,
-);
+  PoliticalPartiesModel copyWith({
+    String? id,
+    String? name,
+    String? email,
+    String? identification,
+    String? password,
+    String? description,
+    String? createdAt,
+    String? updatedAt,
+    num? v,
+  }) =>
+      PoliticalPartiesModel(
+        id: id ?? _id,
+        name: name ?? _name,
+        email: email ?? _email,
+        identification: identification ?? _identification,
+        password: password ?? _password,
+        description: description ?? _description,
+        createdAt: createdAt ?? _createdAt,
+        updatedAt: updatedAt ?? _updatedAt,
+        v: v ?? _v,
+      );
   String? get id => _id;
   String? get name => _name;
   String? get email => _email;
@@ -82,5 +86,4 @@ PoliticalPartiesModel copyWith({  String? id,
     map['__v'] = _v;
     return map;
   }
-
 }
